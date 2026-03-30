@@ -1,6 +1,5 @@
 // swift-tools-version: 6.2
 import PackageDescription
-import Foundation
 
 let bridgePath = "Sources/AgentEventBridges"
 
@@ -77,7 +76,6 @@ let package = Package(
     name: "AgentEventBridges",
     platforms: [.macOS(.v26)],
     products: [
-        .library(name: "AgentEventBridges", targets: ["AgentEventBridges"]),
         .library(name: "ScriptingBridgeCommon", targets: ["ScriptingBridgeCommon"]),
     ] + bridgeProducts,
     targets: [
@@ -86,12 +84,6 @@ let package = Package(
             path: bridgePath,
             exclude: bridgeNames.map { "\($0).swift" },
             sources: ["ScriptingBridgeCommon.swift"]
-        ),
-        .target(
-            name: "AgentEventBridges",
-            dependencies: ["ScriptingBridgeCommon"] + bridgeNames.map { Target.Dependency(stringLiteral: $0) },
-            path: "Sources/AgentEventBridgesAggregate",
-            sources: ["AppleEventBridgesAggregate.swift"]
         ),
     ] + bridgeTargets
 )
