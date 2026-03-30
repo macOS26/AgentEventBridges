@@ -1,4 +1,4 @@
-// ScriptingBridgeCommon is in same module
+@_exported import ScriptingBridgeCommon
 
 // MARK: SafariSaveOptions
 @objc public enum SafariSaveOptions : AEKeyword {

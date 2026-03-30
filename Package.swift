@@ -6,11 +6,19 @@ let package = Package(
     platforms: [.macOS(.v26)],
     products: [
         .library(name: "AgentEventBridges", targets: ["AgentEventBridges"]),
+        .library(name: "ScriptingBridgeCommon", targets: ["ScriptingBridgeCommon"]),
     ],
     targets: [
         .target(
+            name: "ScriptingBridgeCommon",
+            path: "Sources/AgentEventBridges",
+            sources: ["ScriptingBridgeCommon.swift"]
+        ),
+        .target(
             name: "AgentEventBridges",
-            path: "Sources/AgentEventBridges"
+            dependencies: ["ScriptingBridgeCommon"],
+            path: "Sources/AgentEventBridges",
+            exclude: ["ScriptingBridgeCommon.swift"]
         ),
     ]
 )

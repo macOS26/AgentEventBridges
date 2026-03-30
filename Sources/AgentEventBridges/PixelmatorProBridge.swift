@@ -1,4 +1,4 @@
-// ScriptingBridgeCommon is in same module
+@_exported import ScriptingBridgeCommon
 
 // MARK: PixelmatorProSaveOptions
 @objc public enum PixelmatorProSaveOptions : AEKeyword {

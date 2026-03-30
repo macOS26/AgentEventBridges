@@ -1,4 +1,4 @@
-// ScriptingBridgeCommon is in same module
+@_exported import ScriptingBridgeCommon
 
 // MARK: NotesSaveOptions
 @objc public enum NotesSaveOptions : AEKeyword {

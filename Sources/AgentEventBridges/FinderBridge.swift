@@ -1,4 +1,4 @@
-// ScriptingBridgeCommon is in same module
+@_exported import ScriptingBridgeCommon
 
 // MARK: FinderPriv
 @objc public enum FinderPriv : AEKeyword {

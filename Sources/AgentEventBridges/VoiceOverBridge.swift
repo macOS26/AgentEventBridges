@@ -1,4 +1,4 @@
-// ScriptingBridgeCommon is in same module
+@_exported import ScriptingBridgeCommon
 
 // MARK: VoiceOverClickCount
 @objc public enum VoiceOverClickCount : AEKeyword {
