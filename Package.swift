@@ -6,7 +6,7 @@ import Foundation
 let bridgeNames: [String] = {
     let fileManager = FileManager.default
     let currentPath = URL(fileURLWithPath: #filePath).deletingLastPathComponent()
-    let sourcesPath = currentPath.appendingPathComponent("Sources/AppleEventBridges")
+    let sourcesPath = currentPath.appendingPathComponent("Sources/AgentEventBridges")
     guard let files = try? fileManager.contentsOfDirectory(atPath: sourcesPath.path) else { return [] }
     return files
         .filter { $0.hasSuffix("Bridge.swift") && $0 != "ScriptingBridgeCommon.swift" }
@@ -14,7 +14,7 @@ let bridgeNames: [String] = {
         .sorted()
 }()
 
-let bridgePath = "Sources/AppleEventBridges"
+let bridgePath = "Sources/AgentEventBridges"
 let commonTarget: Target.Dependency = "ScriptingBridgeCommon"
 
 // All bridge files for exclusion lists
@@ -41,10 +41,10 @@ let coreTargets: [Target] = [
     ),
     // Aggregate library that re-exports all bridges (for Agent app)
     .target(
-        name: "AppleEventBridges",
+        name: "AgentEventBridges",
         dependencies: [commonTarget] + bridgeNames.map { Target.Dependency(stringLiteral: $0) },
-        path: "Sources/AppleEventBridgesAggregate",
-        sources: ["AppleEventBridgesAggregate.swift"]
+        path: "Sources/AgentEventBridgesAggregate",
+        sources: ["AgentEventBridgesAggregate.swift"]
     ),
 ]
 
@@ -54,11 +54,11 @@ let bridgeProducts: [Product] = bridgeNames.map { name in
 }
 
 let package = Package(
-    name: "AppleEventBridges",
+    name: "AgentEventBridges",
     platforms: [.macOS(.v26)],
     products: [
         // Aggregate library for Agent app
-        .library(name: "AppleEventBridges", targets: ["AppleEventBridges"]),
+        .library(name: "AgentEventBridges", targets: ["AgentEventBridges"]),
         // Common utilities needed by individual scripts
         .library(name: "ScriptingBridgeCommon", targets: ["ScriptingBridgeCommon"]),
     ] + bridgeProducts,
