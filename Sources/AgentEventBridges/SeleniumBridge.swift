@@ -1,4 +1,4 @@
-@_exported import ScriptingBridgeCommon
+// ScriptingBridgeCommon is in same module
 import Foundation
 
 // MARK: - WebDriver Protocol Implementation

@@ -1,4 +1,4 @@
-@_exported import ScriptingBridgeCommon
+// ScriptingBridgeCommon is in same module
 
 // MARK: AutomatorSavo
 @objc public enum AutomatorSavo : AEKeyword {
