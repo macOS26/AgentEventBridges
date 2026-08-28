@@ -155,7 +155,7 @@ public class SeleniumClient {
     /// Reconnect to an existing session by session ID
     public func reconnect(sessionId: String) async throws {
         // Verify the session is valid by getting the title (or any simple command)
-        let response = try await sendRequest("GET", "/session/\(sessionId)/title")
+        _ = try await sendRequest("GET", "/session/\(sessionId)/title")
         // If we get a valid response, the session exists
         session = WebDriverSession(sessionId: sessionId, capabilities: nil)
     }
