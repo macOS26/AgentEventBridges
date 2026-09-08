@@ -105,13 +105,14 @@ public struct WebElement {
 public class SeleniumClient {
     private let baseURL: URL
     private var session: WebDriverSession?
-    private let sessionQueue = DispatchQueue(label: "com.agent.selenium")
     
-    public init(host: String = "localhost", port: Int = 7055) {
-        baseURL = URL(string: "http://\(host):\(port)")!
+    /// Returns nil when `host`/`port` don't form a valid URL (e.g. a host containing spaces).
+    public init?(host: String = "localhost", port: Int = 7055) {
+        guard let url = URL(string: "http://\(host):\(port)") else { return nil }
+        baseURL = url
     }
     
-    public convenience init(browser: BrowserType) {
+    public convenience init?(browser: BrowserType) {
         self.init(host: browser.defaultHost, port: browser.defaultPort)
     }
     

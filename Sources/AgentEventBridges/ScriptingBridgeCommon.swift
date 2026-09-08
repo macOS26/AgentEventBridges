@@ -12,6 +12,5 @@
     var isRunning: Bool { get }
 }
 
-// AEKeyword type used by AppleScript enums
-public typealias AEKeyword = FourCharCode
-public typealias FourCharCode = UInt32
+// AEKeyword / FourCharCode come from CoreServices (re-exported via AppKit) —
+// redeclaring them here shadowed the system types for every importer.

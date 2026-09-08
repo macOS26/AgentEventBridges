@@ -10,21 +10,22 @@ Calendar, Contacts, Finder, Mail, Messages, Music, Notes, Numbers, Pages, Photos
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/macOS26/AgentEventBridges.git", from: "1.0.0"),
+    .package(url: "https://github.com/AgentiLoop/AgentEventBridges.git", from: "1.0.0"),
 ]
 ```
 
 ```swift
+// One product per app bridge — pull in only what you use:
 .target(name: "YourApp", dependencies: [
-    .product(name: "AgentEventBridges", package: "AgentEventBridges"),
+    .product(name: "MusicBridge", package: "AgentEventBridges"),
+    .product(name: "FinderBridge", package: "AgentEventBridges"),
 ]),
 ```
 
 ## Usage
 
 ```swift
-import AgentEventBridges
-import ScriptingBridge
+import MusicBridge   // re-exports ScriptingBridge, AppKit and Foundation
 
 // Control Music
 if let music: MusicApplication = SBApplication(bundleIdentifier: "com.apple.Music") {
